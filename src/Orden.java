@@ -14,8 +14,13 @@ public class Orden extends JFrame{
 	
 setSize(400,400);
 setVisible(true);
+close();
 	}
+
+
+public void close(){
 	
+}
 	
 	public static void abrir() throws URISyntaxException {
 	try{
