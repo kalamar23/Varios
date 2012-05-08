@@ -21,7 +21,7 @@ etiqueta.setIcon(ico);
 texto1.setForeground(Color.WHITE);
 texto1.setFont(fuente);
 texto1.setSize(140, 20);
-texto1.setLocation(120, 30);
+texto1.setLocation(140, 30);
 etiqueta.add(texto1);
 panel.add(etiqueta);
 setContentPane(panel);
