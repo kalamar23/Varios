@@ -7,6 +7,7 @@ public class Orden extends JFrame{
 	JPanel panel = new JPanel();
 	JButton boton1 = new JButton("Ir a pagina !");
 	JLabel etiqueta1 = new JLabel();
+	String ima = "/images/fondo.jpg";
 	ImageIcon ico = new ImageIcon();
 	private String image1 = "";
 	
