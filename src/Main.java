@@ -7,9 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Main extends JFrame {
+
+
+	
   Main() {
     add(new ContentPanel());
-    setSize(500, 300);
+    setSize(new ContentPanel().ANCHO, new ContentPanel().ALTO);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
@@ -23,12 +26,18 @@ public class Main extends JFrame {
 
 class ContentPanel extends JPanel {
   Image bgimage = null;
-
+	protected static int ANCHO = 0;
+	protected static int ALTO = 0;
+  
+  
   ContentPanel() {
     MediaTracker mt = new MediaTracker(this);
     bgimage = Toolkit.getDefaultToolkit().getImage("/home/kala/git/Varios/Images/fondo.jpg");
     System.out.println(bgimage);
     mt.addImage(bgimage, 0);
+  
+    ANCHO = bgimage.getWidth(null);
+    ALTO = bgimage.getHeight(null);
     try {
       mt.waitForAll();
     } catch (InterruptedException e) {
@@ -36,8 +45,11 @@ class ContentPanel extends JPanel {
     }
   }
 
+
+  
   protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
+   Main ma = new Main();
+	  super.paintComponent(g);
     int imwidth = bgimage.getWidth(null);
     int imheight = bgimage.getHeight(null);
     g.drawImage(bgimage, 1, 1, null);
