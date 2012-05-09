@@ -33,7 +33,6 @@ class ContentPanel extends JPanel {
   ContentPanel() {
     MediaTracker mt = new MediaTracker(this);
     bgimage = Toolkit.getDefaultToolkit().getImage("/home/kala/git/Varios/Images/fondo.jpg");
-    System.out.println(bgimage);
     mt.addImage(bgimage, 0);
   
     ANCHO = bgimage.getWidth(null);
@@ -48,7 +47,6 @@ class ContentPanel extends JPanel {
 
   
   protected void paintComponent(Graphics g) {
-   Main ma = new Main();
 	  super.paintComponent(g);
     int imwidth = bgimage.getWidth(null);
     int imheight = bgimage.getHeight(null);
