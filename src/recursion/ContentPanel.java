@@ -7,20 +7,22 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
 class ContentPanel extends JPanel implements ActionListener {
 	JButton boton1 = new JButton("Ingresar numeros");
 	Image bgimage = null;
+	ImageIcon buimage1 = new ImageIcon(
+			"/home/kala/git/Varios/Images/boton1.png");
 
 	ContentPanel() {
 		setLayout(null);
 		bgimage = Toolkit.getDefaultToolkit().getImage(
 				"/home/kala/git/Varios/Images/frame.jpg");
-		boton1.setBounds(30, 160, 160, 30);
-		boton1.addActionListener(this);
-		add(boton1);
+		botones(boton1, buimage1, 450, 535, 120, 30);
+
 		MediaTracker mt = new MediaTracker(this);
 		mt.addImage(bgimage, 0);
 
@@ -32,22 +34,27 @@ class ContentPanel extends JPanel implements ActionListener {
 
 	}
 
-/* Escucha acciones de botones
- * 	
- */
-	public void actionPerformed(ActionEvent e){
-		
-		if(e.equals(boton1)){
-			
+	/*
+	 * Escucha acciones de botones
+	 */
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == boton1) {
+			System.exit(0);
 		}
-		
-		
+
 	}
-	
-	
-	
-	
-	
+
+	// Asignar propiedades a botones
+	private void botones(JButton boton, ImageIcon ico, int lw, int lh, int w,
+			int h) {
+		boton.setIcon(ico);
+		boton.setBorderPainted(false);
+		boton.setBounds(lw, lh, w, h);
+		add(boton);
+		boton.addActionListener(this);
+	}
+
 	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
