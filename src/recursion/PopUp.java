@@ -26,10 +26,12 @@ public class PopUp extends JFrame {
 }
 
 class Entrada extends JPanel implements ActionListener {
+	
+int[] temp = new int[15];
+private byte count = 0;
 
 JButton aceptar = new JButton("Aceptar");
 JTextField input1 = new JTextField();
-private int num = 0;
 Image popup = null;
 	
 	
@@ -55,18 +57,20 @@ add(input1);
 	public void actionPerformed(ActionEvent e){
 
 		if(e.getSource() == aceptar){
-		if(!(input1.getText().equals(""))){
-		String s1 = input1.getText();
-		num = Integer.parseInt(s1);
-		}
+		fill();
 		}
 		
 	}
 	
-	
-	
-	public int getNum(){
-		return num;
+	private void fill (){
+		if(count < temp.length){	
+		if(!(input1.getText().equals(""))){
+			String s1 = input1.getText();
+			temp[count] = Integer.parseInt(s1);	
+			System.out.println("valor [" + count +"] :" + temp[count]);
+			count++;
+		}
+	}	
 	}
 	
 	

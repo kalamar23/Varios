@@ -9,22 +9,19 @@ public class Proceso {
 	
 	
 	Proceso(){
-		
+	
 	}
 	
 	
-	private void input(){
-	
-		for(byte i = 0;i < num.length;i++){
-			
-	
-			
+	public void input(int[] num){
+for(int va : num){
+	System.out.println("valor : " + va);
+}
 			
 		}
 		
 		
-		
-	}
+
 	
 	private void creciente(){
 		
