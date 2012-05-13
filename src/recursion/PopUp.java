@@ -4,11 +4,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 public class PopUp extends JFrame {
 	
 	PopUp(){
@@ -23,25 +25,52 @@ public class PopUp extends JFrame {
 	}
 }
 
-class Entrada extends JPanel{
+class Entrada extends JPanel implements ActionListener {
+
+JButton aceptar = new JButton("Aceptar");
+JTextField input1 = new JTextField();
+private int num = 0;
+Image popup = null;
 	
-JButton boton1 = new JButton("Aceptar");
-	Image popup = null;
+	
 	Entrada(){
 	setLayout(null);
+
+add(aceptar);
+aceptar.setBounds(300,130, 100, 30);
+aceptar.addActionListener(this);
+input1.setBounds(120, 90, 180, 30);
+add(input1);
 	popup = Toolkit.getDefaultToolkit().getImage("/home/kala/git/Varios/Images/popup.jpg");
 	MediaTracker mt = new MediaTracker(this);
 	mt.addImage(popup, 0);
-	
 	try{
 		mt.waitForAll();
 	}catch(InterruptedException e){
 		e.printStackTrace();
+	}	
+}
+	
+	
+	public void actionPerformed(ActionEvent e){
+
+		if(e.getSource() == aceptar){
+		if(!(input1.getText().equals(""))){
+		String s1 = input1.getText();
+		num = Integer.parseInt(s1);
+		}
+		}
+		
 	}
 	
 	
 	
-}
+	public int getNum(){
+		return num;
+	}
+	
+	
+	
 	protected void paintComponent(Graphics g){
 
 		super.paintComponent(g);

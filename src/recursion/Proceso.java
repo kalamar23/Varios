@@ -17,7 +17,7 @@ public class Proceso {
 	
 		for(byte i = 0;i < num.length;i++){
 			
-			num[i] =
+	
 			
 			
 		}
