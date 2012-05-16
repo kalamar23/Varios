@@ -1,33 +1,55 @@
 package recursion;
 //La siguiente clase realiza los procesos del programa , formando el backend de la aplicación
-import javax.swing.JOptionPane;
 
 public class Proceso {
 
-	private int[] num = new int[15];
+	
+	private int[] num;
 	
 	
+StringBuffer array = new StringBuffer();
 	
-	Proceso(){
+	Proceso(int[] copiado){
 	
+
+		this.num = copiado;
+visualizar();
 	}
 	
 	
-	public void input(int[] num){
-for(int va : num){
-	System.out.println("valor : " + va);
-}
+	private void visualizar (){
+		
+		
+		for(int va : num){
+			
+			array.append(("|" + String.valueOf(va)) + "|");
 			
 		}
 		
-		
-
+		System.out.println(array);
+	}
+	
+	
+	
+	
 	
 	private void creciente(){
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
 	private void decreciente(){
 		
 	}
+	
+	
+
+	
+	
 }

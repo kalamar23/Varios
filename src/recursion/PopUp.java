@@ -27,8 +27,8 @@ public class PopUp extends JFrame {
 	}
 
 	class Entrada extends JPanel implements ActionListener {
-		byte index = 1;
-		int[] temp = new int[index];
+		private byte index = 0;
+		private int[] temp = new int[index];
 		private byte count = 0;
 
 		JButton aceptar = new JButton("Aceptar");
@@ -58,11 +58,11 @@ public class PopUp extends JFrame {
 		/**
 		 * Asigna propiedades a los botones
 		 * @param boton
-		 * @param image
-		 * @param lw
-		 * @param lh
-		 * @param ancho
-		 * @param alto
+		 * @param image La imagen del boton
+		 * @param lw Ubicación a lo ancho
+		 * @param lh Ubicación a lo alto
+		 * @param ancho Define el ancho del botón
+		 * @param alto Define el alto del botón
 		 */
 		public void botones(JButton boton,ImageIcon image,int lw,int lh, int ancho, int alto){
 			boton.setIcon(image);
@@ -75,19 +75,22 @@ public class PopUp extends JFrame {
 		
 		
 		public void actionPerformed(ActionEvent e) {
-
+			
 			if (e.getSource() == aceptar) {
-				if (count < temp.length) {
+				if (count < 15) {
 					fill();
 				}
-				if (count == 15) dispose();
+				if (count == 15) { 
+					proce(); dispose();
+				
+				}
 			}
-
+	
 			if(e.getSource() == cerrar){
-				dispose();
-			}
+				proce(); dispose();
 			
-			
+		
+			}		
 		}
 
 		/**
@@ -115,11 +118,23 @@ public class PopUp extends JFrame {
 								+ temp[count]);
 						count++;
 						input1.setText("");
+					temp = new int[index += 1];
 					} 
 				}
 			}
 		}
 
+/* Este metodo envía los datos a la clase proceso para ser visualizados y ordenados
+ * 
+ */
+		private void proce(){
+			
+			Proceso pro = new Proceso(temp);
+			
+			
+		}
+		
+		
 		protected void paintComponent(Graphics g) {
 
 			super.paintComponent(g);
