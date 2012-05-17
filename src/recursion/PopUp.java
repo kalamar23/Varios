@@ -7,6 +7,9 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -27,21 +30,21 @@ public class PopUp extends JFrame {
 	}
 
 	class Entrada extends JPanel implements ActionListener {
-		private byte index = 0;
-		private int[] temp = new int[index];
+		private int[] temp = new int[15];
 		private byte count = 0;
-
 		JButton aceptar = new JButton("Aceptar");
 		JButton cerrar = new JButton();
 		JTextField input1 = new JTextField();
-		ImageIcon icerrar = new ImageIcon("/home/kala/git/Varios/Images/botonx.jpg");
+		ImageIcon icerrar = new ImageIcon(
+				"/home/kala/git/Varios/Images/botonx.jpg");
 		Image popup = null;
 
 		Entrada() {
 			setLayout(null);
-			botones(aceptar,null,300, 130, 100, 30);
-			botones(cerrar,icerrar,5,130,77,41);
+			botones(aceptar, null, 300, 130, 100, 30);
+			botones(cerrar, icerrar, 5, 130, 77, 41);
 			input1.setBounds(120, 90, 180, 30);
+			key();
 			add(input1);
 			popup = Toolkit.getDefaultToolkit().getImage(
 					"/home/kala/git/Varios/Images/popup.jpg");
@@ -54,43 +57,65 @@ public class PopUp extends JFrame {
 			}
 		}
 
-		
 		/**
 		 * Asigna propiedades a los botones
+		 * 
 		 * @param boton
-		 * @param image La imagen del boton
-		 * @param lw Ubicación a lo ancho
-		 * @param lh Ubicación a lo alto
-		 * @param ancho Define el ancho del botón
-		 * @param alto Define el alto del botón
+		 * @param image
+		 *            La imagen del boton
+		 * @param lw
+		 *            Ubicación a lo ancho
+		 * @param lh
+		 *            Ubicación a lo alto
+		 * @param ancho
+		 *            Define el ancho del botón
+		 * @param alto
+		 *            Define el alto del botón
 		 */
-		public void botones(JButton boton,ImageIcon image,int lw,int lh, int ancho, int alto){
+		public void botones(JButton boton, ImageIcon image, int lw, int lh,
+				int ancho, int alto) {
 			boton.setIcon(image);
 			boton.setBorderPainted(false);
 			boton.setBounds(lw, lh, ancho, alto);
 			add(boton);
 			boton.addActionListener(this);
 		}
+
+		
+		// El siguiente metodo escucha la acción del teclado en botón campo input1 
+		
+		public void key(){	
+			input1.addKeyListener(new KeyAdapter() {
+			      public void keyPressed(KeyEvent eu) {
+			           if (eu.getKeyCode() == KeyEvent.VK_ENTER) {
+			            fill();
+			           
+			           }
+			      }
+			    });		
+		}
+		
+		
 		
 		
 		
 		public void actionPerformed(ActionEvent e) {
-			
+
 			if (e.getSource() == aceptar) {
 				if (count < 15) {
 					fill();
 				}
-				if (count == 15) { 
-					proce(); dispose();
-				
+				if (count == 15) {
+					prepara();
+					dispose();
 				}
 			}
-	
-			if(e.getSource() == cerrar){
-				proce(); dispose();
-			
-		
-			}		
+
+			if (e.getSource() == cerrar) {
+				prepara();
+				dispose();
+
+			}
 		}
 
 		/**
@@ -99,12 +124,12 @@ public class PopUp extends JFrame {
 		 * @return Devuelve el array de enteros a procesar por la clase Proceso
 		 */
 		private void fill() {
-
 			if (count < temp.length) {
 				boolean exception = true;
 
 				if (!(input1.getText().equals(""))) {
 					String s1 = input1.getText();
+
 					try {
 						temp[count] = Integer.parseInt(s1);
 					} catch (NumberFormatException e) {
@@ -118,23 +143,33 @@ public class PopUp extends JFrame {
 								+ temp[count]);
 						count++;
 						input1.setText("");
-					temp = new int[index += 1];
-					} 
+					}
 				}
 			}
 		}
 
-/* Este metodo envía los datos a la clase proceso para ser visualizados y ordenados
- * 
- */
-		private void proce(){
-			
-			Proceso pro = new Proceso(temp);
-			
-			
+		/*
+		 * Este metodo prepara, ajusta y envía los datos a la clase proceso para
+		 * ser visualizados y ordenados
+		 */
+		private void prepara() {
+			count = 0;
+			for (int va : temp) {
+				if (va != 0) {
+					count++;
+				}
+			}
+			int[] prepa = new int[count];
+
+			for (byte i = 0; i < prepa.length; i++) {
+
+				prepa[i] = temp[i];
+			}
+
+			Proceso pro = new Proceso(prepa);
+
 		}
-		
-		
+
 		protected void paintComponent(Graphics g) {
 
 			super.paintComponent(g);
