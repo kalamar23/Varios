@@ -89,7 +89,11 @@ public class PopUp extends JFrame {
 			      public void keyPressed(KeyEvent eu) {
 			           if (eu.getKeyCode() == KeyEvent.VK_ENTER) {
 			            fill();
-			           
+			           if(count == 15) { 
+			        	   
+			        	   prepara();
+			        	dispose();
+			           }
 			           }
 			      }
 			    });		

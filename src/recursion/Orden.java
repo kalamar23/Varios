@@ -10,10 +10,19 @@ public class Orden extends JFrame {
 		setSize(600, 620);
 		setUndecorated(true);
 		add(new ContentPanel());
+
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	
+
+	
+	
+	
+	
+	
+	
 	// El siguiente metodo llena un array con numeros enteros al azar
 
 	public static void main(String[] args) {
